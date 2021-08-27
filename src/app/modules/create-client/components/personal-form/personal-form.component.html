@@ -1,0 +1,76 @@
+<app-client-form-steps [step]="0"></app-client-form-steps>
+<form class="form-group" [formGroup]="form">
+  <h2>{{ 'FORMS.CLIENT.CAPTION' | translate }}</h2>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.CLIENT.LAST_NAME.LABEL' | translate }}</mat-label>
+      <input matInput name="lastName" formControlName="lastName" required />
+      <mat-hint>{{ 'FORMS.CLIENT.LAST_NAME.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.CLIENT.FIRST_NAME.LABEL' | translate }}</mat-label>
+      <input matInput name="firstName" formControlName="firstName" required />
+      <mat-hint>{{ 'FORMS.CLIENT.FIRST_NAME.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.CLIENT.PATRONYMIC.LABEL' | translate }}</mat-label>
+      <input matInput name="patronymic" formControlName="patronymic" />
+      <mat-hint>{{ 'FORMS.CLIENT.PATRONYMIC.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.CLIENT.BIRTHDAY.LABEL' | translate }}</mat-label>
+      <input matInput name="birthDate" formControlName="birthDate" [matDatepicker]="picker" required />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-hint>{{ 'FORMS.CLIENT.BIRTHDAY.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <mat-label>{{ 'FORMS.CLIENT.GENDER.LABEL' | translate }}</mat-label>
+    <br />
+    <mat-radio-group formControlName="gender">
+      <mat-radio-button *ngFor="let item of genders | keyvalue" [value]="item.key">
+        {{ item.value | translate }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.CLIENT.PHONE.LABEL' | translate }}</mat-label>
+      <input matInput type="tel" name="phone" formControlName="phone" />
+      <mat-hint>{{ 'FORMS.CLIENT.PHONE.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <mat-label>{{ 'FORMS.CLIENT.GROUP.LABEL' | translate }}</mat-label>
+    <mat-button-toggle-group formControlName="clientGroup" multiple>
+      <mat-button-toggle *ngFor="let item of clientGroups | keyvalue" [value]="item.key">
+        {{ item.value | translate }}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.CLIENT.COORDINATOR.LABEL' | translate }}</mat-label>
+      <mat-select formControlName="coordinator">
+        <mat-option *ngFor="let item of coordinators$ | async" [value]="item">{{ item.name }}</mat-option>
+      </mat-select>
+      <mat-hint>{{ 'FORMS.CLIENT.COORDINATOR.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <mat-checkbox formControlName="noSms">{{ 'FORMS.CLIENT.NO_SMS.LABEL' | translate }}</mat-checkbox>
+  </div>
+  <div class="form-actions">
+    <span></span>
+    <button mat-raised-button type="button" color="primary" [disabled]="form.invalid" (click)="next()">
+      {{ 'FORMS.NEXT' | translate }}
+    </button>
+  </div>
+</form>

@@ -1,0 +1,60 @@
+<app-client-form-steps [step]="2"></app-client-form-steps>
+<form class="form-group" [formGroup]="form">
+  <h2>{{ 'FORMS.DOC.CAPTION' | translate }}</h2>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.DOC.TYPE.LABEL' | translate }}</mat-label>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let item of docTypes | keyvalue" [value]="item.key">
+          {{ item.value | translate }}
+        </mat-option>
+      </mat-select>
+      <mat-hint>{{ 'FORMS.DOC.TYPE.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.DOC.SERIES.LABEL' | translate }}</mat-label>
+      <input matInput name="series" formControlName="series" />
+      <mat-hint>{{ 'FORMS.DOC.SERIES.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.DOC.NUMBER.LABEL' | translate }}</mat-label>
+      <input matInput name="number" formControlName="number" required />
+      <mat-hint>{{ 'FORMS.DOC.NUMBER.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.DOC.ISSUED_BY.LABEL' | translate }}</mat-label>
+      <textarea matInput name="issuedBy" formControlName="issuedBy"></textarea>
+      <mat-hint>{{ 'FORMS.DOC.ISSUED_BY.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.DOC.ISSUE_DATE.LABEL' | translate }}</mat-label>
+      <input matInput name="issueDate" formControlName="issueDate" [matDatepicker]="picker" required />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-hint>{{ 'FORMS.DOC.ISSUE_DATE.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <input #file hidden type="file" id="file" accept="image/*" (change)="selectFile($event)" />
+    <button mat-raised-button type="button" color="primary" (click)="file.click()">
+      {{ 'FORMS.DOC.FILE.LABEL' | translate }}
+    </button>
+    <label *ngIf="fileName" for="file" class="form-file-label">{{ fileName }}</label>
+  </div>
+  <div class="form-actions">
+    <button mat-raised-button type="button" (click)="previous()">
+      {{ 'FORMS.BACK' | translate }}
+    </button>
+    <button mat-raised-button type="button" color="primary" [disabled]="form.invalid" (click)="next()">
+      {{ 'FORMS.CONFIRM' | translate }}
+    </button>
+  </div>
+</form>

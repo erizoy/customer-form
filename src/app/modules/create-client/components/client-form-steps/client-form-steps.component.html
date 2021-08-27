@@ -1,0 +1,18 @@
+<!-- Pointer events disabled in styles -->
+<mat-stepper #stepper linear="true" [selectedIndex]="step">
+  <mat-step
+    [completed]="step > 0"
+    [label]="'FORMS.CLIENT.CAPTION' | translate"
+    [routerLink]="['/client-form/client']"
+  ></mat-step>
+  <mat-step
+    [completed]="step > 1"
+    [label]="'FORMS.ADDRESS.CAPTION' | translate"
+    [routerLink]="['/client-form/address']"
+  ></mat-step>
+  <mat-step
+    [completed]="step > 2"
+    [label]="'FORMS.DOC.CAPTION' | translate"
+    [routerLink]="['/client-form/identity']"
+  ></mat-step>
+</mat-stepper>

@@ -1,0 +1,101 @@
+<div class="base-container">
+  <h2>{{ 'CREATED_CLIENT.TITLE' | translate }}</h2>
+
+  <ng-container *ngIf="service.personal as personal">
+    <h3>{{ 'FORMS.CLIENT.CAPTION' | translate }}</h3>
+    <div>
+      <span>{{ 'FORMS.CLIENT.LAST_NAME.LABEL' | translate }}</span>:
+      <b>{{ personal.lastName }}</b>
+    </div>
+    <div>
+      <span>{{ 'FORMS.CLIENT.FIRST_NAME.LABEL' | translate }}</span>:
+      <b>{{ personal.firstName }}</b>
+    </div>
+    <div *ngIf="personal.patronymic">
+      <span>{{ 'FORMS.CLIENT.PATRONYMIC.LABEL' | translate }}</span>:
+      <b>{{ personal.patronymic }}</b>
+    </div>
+    <div>
+      <span>{{ 'FORMS.CLIENT.BIRTHDAY.LABEL' | translate }}</span>:
+      <b>{{ personal.birthDate | date:'d MMMM y' }}</b>
+    </div>
+    <div>
+      <span>{{ 'FORMS.CLIENT.PHONE.LABEL' | translate }}</span>:
+      <b>{{ personal.phone }}</b>
+    </div>
+    <div *ngIf="personal.gender">
+      <span>{{ 'FORMS.CLIENT.GENDER.LABEL' | translate }}</span>:
+      <b>{{ genders[personal.gender] | translate }}</b>
+    </div>
+    <div *ngIf="personal.clientGroup">
+      <span>{{ 'FORMS.CLIENT.GENDER.LABEL' | translate }}</span>:
+      <b *ngFor="let group of personal.clientGroup; let last = last">
+        {{ clientGroups[group] | translate }}<ng-container *ngIf="!last">,</ng-container>
+      </b>
+    </div>
+    <div *ngIf="personal.coordinator">
+      <span>{{ 'FORMS.CLIENT.COORDINATOR.LABEL' | translate }}</span>:
+      <b>{{ personal.coordinator.name }}</b>
+    </div>
+    <div *ngIf="personal.noSms">
+      <span>{{ 'FORMS.CLIENT.NO_SMS.LABEL' | translate }}</span>  
+    </div>
+  </ng-container>
+  <br />
+  <ng-container *ngIf="service.address as address">
+    <h3>{{ 'FORMS.ADDRESS.CAPTION' | translate }}</h3>
+    <div *ngIf="address.zip">
+      <span>{{ 'FORMS.ADDRESS.ZIP.LABEL' | translate }}</span>:
+      <b>{{ address.zip }}</b>
+    </div>
+    <div>
+      <span>{{ 'FORMS.ADDRESS.COUNTRY.LABEL' | translate }}</span>:
+      <b>{{ address.country.name }}</b>
+    </div>
+    <div *ngIf="address.region">
+      <span>{{ 'FORMS.ADDRESS.REGION.LABEL' | translate }}</span>:
+      <b>{{ address.region }}</b>
+    </div>
+    <div>
+      <span>{{ 'FORMS.ADDRESS.CITY.LABEL' | translate }}</span>:
+      <b>{{ address.city.name }}</b>
+    </div>
+    <div *ngIf="address.street">
+      <span>{{ 'FORMS.ADDRESS.STREET.LABEL' | translate }}</span>:
+      <b>{{ address.street }}</b>
+    </div>
+    <div *ngIf="address.house">
+      <span>{{ 'FORMS.ADDRESS.HOUSE.LABEL' | translate }}</span>:
+      <b>{{ address.house }}</b>
+    </div>
+  </ng-container>
+  <br />
+  <ng-container *ngIf="service.doc as doc">
+    <h3>{{ 'FORMS.DOC.CAPTION' | translate }}</h3>
+    <div>
+      <span>{{ 'FORMS.DOC.TYPE.LABEL' | translate }}</span>:
+      <b>{{ docTypes[doc.type] | translate }}</b>
+    </div>
+    <div *ngIf="doc.series">
+      <span>{{ 'FORMS.DOC.SERIES.LABEL' | translate }}</span>:
+      <b>{{ doc.series }}</b>
+    </div>
+    <div>
+      <span>{{ 'FORMS.DOC.NUMBER.LABEL' | translate }}</span>:
+      <b>{{ doc.number }}</b>
+    </div>
+    <div *ngIf="doc.issuedBy">
+      <span>{{ 'FORMS.DOC.ISSUED_BY.LABEL' | translate }}</span>:
+      <b [innerHTML]="doc.issuedBy"></b>
+    </div>
+    <div>
+      <span>{{ 'FORMS.DOC.ISSUE_DATE.LABEL' | translate }}</span>:
+      <b>{{ doc.issueDate | date: 'd MMMM y' }}</b>
+    </div>
+    <div *ngIf="doc.file" class="file-preview" [style.backgroundImage]="'url(' + doc.file + ')'"></div>
+  </ng-container>
+  <br />
+  <button mat-raised-button type="button" color="primary" (click)="reset()">
+    {{ 'CREATED_CLIENT.RESET' | translate }}
+  </button>
+</div>

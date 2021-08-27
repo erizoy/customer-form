@@ -1,0 +1,38 @@
+{
+  "personal": {
+    "lastName": "Filimonov",
+    "firstName": "Nikolay",
+    "patronymic": "",
+    "birthDate": "2011-11-10T20:00:00.000Z",
+    "phone": "12345678901",
+    "gender": "male",
+    "clientGroup": ["vip", "new"],
+    "coordinator": {
+      "id": 2,
+      "name": "Захаров"
+    },
+    "noSms": true
+  },
+  "address": {
+    "zip": 394068,
+    "country": {
+      "id": 1,
+      "name": "Россия"
+    },
+    "region": "Воронежская область",
+    "city": {
+      "id": 2,
+      "name": "Москва"
+    },
+    "street": "Какая-то улица",
+    "house": "123"
+  },
+  "doc": {
+    "type": "passport",
+    "series": "1",
+    "number": "23123",
+    "issuedBy": "123",
+    "issueDate": "2001-09-30T20:00:00.000Z",
+    "file": "C:\\fakepath\\387_BLT08766.jpg"
+  }
+}

@@ -1,0 +1,58 @@
+<app-client-form-steps [step]="1"></app-client-form-steps>
+<form class="form-group" [formGroup]="form">
+  <h2>{{ 'FORMS.ADDRESS.CAPTION' | translate }}</h2>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.ADDRESS.ZIP.LABEL' | translate }}</mat-label>
+      <input matInput type="number" name="zip" formControlName="zip" />
+      <mat-hint>{{ 'FORMS.ADDRESS.ZIP.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.ADDRESS.COUNTRY.LABEL' | translate }}</mat-label>
+      <mat-select formControlName="country">
+        <mat-option *ngFor="let item of countries$ | async" [value]="item">{{ item.name }}</mat-option>
+      </mat-select>
+      <mat-hint>{{ 'FORMS.ADDRESS.COUNTRY.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.ADDRESS.REGION.LABEL' | translate }}</mat-label>
+      <input matInput name="region" formControlName="region" />
+      <mat-hint>{{ 'FORMS.ADDRESS.REGION.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.ADDRESS.CITY.LABEL' | translate }}</mat-label>
+      <mat-select formControlName="city">
+        <mat-option *ngFor="let item of cities$ | async" [value]="item">{{ item.name }}</mat-option>
+      </mat-select>
+      <mat-hint>{{ 'FORMS.ADDRESS.CITY.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.ADDRESS.STREET.LABEL' | translate }}</mat-label>
+      <input matInput name="street" formControlName="street" />
+      <mat-hint>{{ 'FORMS.ADDRESS.STREET.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'FORMS.ADDRESS.HOUSE.LABEL' | translate }}</mat-label>
+      <input matInput name="house" formControlName="house" />
+      <mat-hint>{{ 'FORMS.ADDRESS.HOUSE.HINT' | translate }}</mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="form-actions">
+    <button mat-raised-button type="button" (click)="previous()">
+      {{ 'FORMS.BACK' | translate }}
+    </button>
+    <button mat-raised-button type="button" color="primary" [disabled]="form.invalid" (click)="next()">
+      {{ 'FORMS.NEXT' | translate }}
+    </button>
+  </div>
+</form>
